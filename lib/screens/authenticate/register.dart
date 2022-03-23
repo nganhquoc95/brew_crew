@@ -4,33 +4,33 @@ import 'package:brew_crew/shared/constants.dart';
 import 'package:brew_crew/shared/validators.dart'
     show emailValidator, passwordValidator;
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
 
-  SignIn({required this.toggleView});
+  Register({required this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+
   String email = "";
   String password = "";
   String error = "";
 
-  AuthService _auth = AuthService();
-  final _formKey = GlobalKey<FormState>();
-
-  void onPressdSignInAsAnonymous() async {
-    dynamic result = await _auth.signInAnonymus();
-    print(result);
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign In'),
+        title: Text('Register'),
         elevation: 0.0,
         actions: <Widget>[
           TextButton.icon(
@@ -38,7 +38,7 @@ class _SignInState extends State<SignIn> {
               widget.toggleView();
             },
             icon: Icon(Icons.person),
-            label: Text('Register'),
+            label: Text('Sign In'),
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
             ),
@@ -65,9 +65,9 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: 20),
               TextFormField(
                 validator: emailValidator,
-                onChanged: (val) {
+                onChanged: (value) {
                   setState(() {
-                    email = val;
+                    email = value;
                   });
                 },
                 decoration: textInputDecoration.copyWith(
@@ -77,8 +77,8 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                validator: passwordValidator,
                 obscureText: true,
+                validator: passwordValidator,
                 onChanged: (val) {
                   setState(() {
                     password = val;
@@ -93,18 +93,19 @@ class _SignInState extends State<SignIn> {
               TextButton.icon(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    dynamic result =
-                        await _auth.signInWithEmailAndPassword(email, password);
+                    dynamic result = await _auth.register(email, password);
+                    print(result);
+
                     if (result == null) {
                       setState(() {
                         error =
-                            "The password is invalid or the user does not have a password.";
+                            "The email address is already in use by another account.";
                       });
                     }
                   }
                 },
-                icon: Icon(Icons.login),
-                label: Text('Login'),
+                icon: Icon(Icons.person_add),
+                label: Text('Create a Account'),
               ),
             ],
           ),
