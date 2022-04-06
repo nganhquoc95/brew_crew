@@ -22,9 +22,6 @@ class DatabaseService {
 
   List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      final data = doc.data();
-      print("data $data");
-
       return Brew.fromFirestore(doc);
     }).toList();
   }

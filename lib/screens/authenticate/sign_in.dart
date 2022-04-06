@@ -79,7 +79,7 @@ class _SignInState extends State<SignIn> {
                         icon: Icon(Icons.email),
                         hintText: 'E-Mail',
                       ),
-                    ),
+                    ), // E-Mail field
                     SizedBox(height: 20),
                     TextFormField(
                       validator: passwordValidator,
@@ -93,9 +93,10 @@ class _SignInState extends State<SignIn> {
                         icon: Icon(Icons.lock),
                         hintText: 'Password',
                       ),
-                    ),
+                    ), // Password Field
                     SizedBox(height: 20),
                     TextButton.icon(
+                      style: buttonStyle,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
@@ -114,7 +115,7 @@ class _SignInState extends State<SignIn> {
                       },
                       icon: Icon(Icons.login),
                       label: Text('Login'),
-                    ),
+                    ), // Button Login
                   ],
                 ),
               ),

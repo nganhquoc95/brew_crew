@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:brew_crew/firebase_options.dart';
 import 'package:brew_crew/screens/wrapper.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart' show User;
+// import 'package:firebase_auth/firebase_auth.dart' show User;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

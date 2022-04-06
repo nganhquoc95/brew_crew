@@ -96,6 +96,7 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20),
                     TextButton.icon(
+                      style: buttonStyle,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
