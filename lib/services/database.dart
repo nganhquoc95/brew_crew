@@ -25,11 +25,7 @@ class DatabaseService {
       final data = doc.data();
       print("data $data");
 
-      return Brew(
-        name: '',
-        sugars: '',
-        strength: 0,
-      );
+      return Brew.fromFirestore(doc);
     }).toList();
   }
 

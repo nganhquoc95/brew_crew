@@ -1,6 +1,7 @@
 import 'package:brew_crew/models/brew.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:brew_crew/screens/home/brew_tile.dart';
 
 class BrewList extends StatefulWidget {
   @override
@@ -17,7 +18,12 @@ class _BrewListState extends State<BrewList> {
     }
 
     return Container(
-      child: Text('Brew list'),
+      child: ListView.builder(
+        itemCount: brews.length,
+        itemBuilder: (context, index) {
+          return BrewTile(brews[index]);
+        },
+      ),
     );
   }
 }
