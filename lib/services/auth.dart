@@ -35,7 +35,7 @@ class AuthService {
 
       if (user != null) {
         DatabaseService(uid: user.uid)
-            .updateUserData('0', 'new crew member', 100);
+            .updateUserData('new crew member', '0', 100);
       }
       return user;
     } catch (e) {

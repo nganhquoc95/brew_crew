@@ -13,7 +13,7 @@ class Brew {
     required this.strength,
   });
 
-  factory Brew.fromFirestore(DocumentSnapshot doc) {
+  factory Brew.fromSnapshot(DocumentSnapshot doc) {
     Map data = doc.data() as Map;
     return Brew(
       id: doc.id,
